@@ -1,0 +1,8 @@
+source "https://rubygems.org"
+gem "eth"
+gem "haml"
+gem "httparty"
+gem "mysql2"
+gem "sequel"
+gem "sinatra"
+gem "sinatra-contrib"
