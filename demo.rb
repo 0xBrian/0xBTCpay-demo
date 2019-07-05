@@ -39,8 +39,6 @@ post "/" do
     jsonrpc:"2.0"
   }.to_json
   r = HTTParty.post("https://payments.0xbtcpay.io", body: body, headers: headers)
-  puts r.parsed_response.inspect
-
 
   # 0xBTCpay will give us back data like this:
   # {
@@ -50,15 +48,12 @@ post "/" do
   # }
   result = r.parsed_response["result"]
 
-  puts "result = " + result.inspect
-
   halt 500 unless result
 
   # update our order with these details
   order.payment_id = result["id"]
   order.address = r["address"]
   order.save
-  puts order.inspect
 
   redirect "/#{order.id}"
 end
@@ -87,11 +82,9 @@ end
 # }
 post "/postback" do
   postback = JSON.parse(request.body.read, symbolize_names: true)
-  puts "postback = #{postback.inspect}"
 
   # this is our original data that we sent 0xBTCpay
-  data = postback[:data]
-  puts "data = #{data.inspect}"
+  data = JSON.parse(postback[:data], symbolize_names: true)
 
   # look up the order 0xBTCpay is telling us about
   order_id = data[:order_id]
@@ -115,7 +108,7 @@ end
 ### helpers
 
 def get_memes
-  $meme_files ||= (Dir.entries("public/memes") - [".", ".."])
+  $meme_files ||= Dir.entries("public/memes").grep(%r((.png|.gif|.jpg)$)i)
   num_memes = (@order.amount / 0.001).to_i
   @memes = []
   srand @order.id.to_i
