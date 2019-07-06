@@ -74,7 +74,7 @@ get %r(/(\d+)) do
 end
 
 # our postback. 0xBTCpay will call this when payment is complete.
-# the JSON data will look like this:
+# the JSON data from 0xBTCpay will look like this:
 # {
 #   id: "2e33e3beb7ec2af9",  # ID for tracking the payment with 0xBTCpay
 #   data: {...},             # our original data that we sent 0xBTCpay
