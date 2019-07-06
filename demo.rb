@@ -32,10 +32,10 @@ post "/" do
       # 0xBTCpay will give us this data in the postback, after the customer has
       # paid the full amount of 0xBitcoin.
       data: {order_id: order.id, postback_secret: order.postback_secret},
-      # the postback url has a se
+      # 0xBTCpay will do a POST to our postback_url when the payment is complete.
       postback_url: "https://demo.0xbtcpay.io/postback"
     },
-    id:1, # this is not an order ID. it can always be 1. it's part of JSONRPC.
+    id:1, # this is not an order ID. it can always be 1 (or whatever). part of JSONRPC.
     jsonrpc:"2.0"
   }.to_json
   r = HTTParty.post("https://payments.0xbtcpay.io", body: body, headers: headers)
@@ -44,7 +44,7 @@ post "/" do
   # {
   #   id: "2e33e3beb7ec2af9",    # ID for tracking the payment with 0xBTCpay
   #   amount: "0.001",           # same as our order.amount
-  #   address: "0xabcdef..."     # ethereum address the customer send 0xBTC to
+  #   address: "0xabcdef..."     # ethereum address the customer should send 0xBTC to
   # }
   result = r.parsed_response["result"]
 
