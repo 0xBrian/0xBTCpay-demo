@@ -34,7 +34,7 @@
             qr = new QRious({
               element: canvas,
               size: 250,
-              value: `ethereum:${data.address}?value=${Math.floor(data.amount * 1e8)}`
+              value: `ethereum:${data.address}?value=${data.amount}`
             });
           }
           if (!metamaskAdded) {
