@@ -31,7 +31,7 @@ GEM
     rack (2.2.3)
     rack-protection (2.0.5)
       rack
-    rake (12.3.2)
+    rake (13.0.1)
     rlp (0.7.3)
     scrypt (3.0.6)
       ffi-compiler (>= 1.0, < 2.0)
