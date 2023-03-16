@@ -28,7 +28,7 @@ GEM
     multi_xml (0.6.0)
     mustermann (1.0.3)
     mysql2 (0.5.2)
-    rack (2.2.3)
+    rack (2.2.6.4)
     rack-protection (2.0.5)
       rack
     rake (13.0.1)
